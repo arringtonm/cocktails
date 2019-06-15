@@ -61,10 +61,12 @@ export function filtersFromUserOptions(
   const filters = [];
 
   // the option about whether to include all/some ingredients
-  filters.push({
-    rule: userFilterOptions.ingredientsRule,
-    ingredients: userFilterOptions.ingredients
-  });
+  if (userFilterOptions.ingredientsRule) {
+    filters.push({
+      rule: userFilterOptions.ingredientsRule,
+      ingredients: userFilterOptions.ingredients
+    });
+  }
 
   // the option as to whether to only show stuff that is makeable from the bar
   if (userFilterOptions.barOnly)

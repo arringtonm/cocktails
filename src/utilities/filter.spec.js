@@ -123,27 +123,40 @@ describe("combining filters", () => {
 });
 
 describe("filtersFromUserOptions", () => {
-  it("builds an array of filters based on the users current options", () => {
-    const filterOptions = {
-      ingredients: ["whiskey"],
-      ingredientsRule: "mustInclude",
-      barOnly: true,
-      veganOnly: true,
-      categories: ["Longdrink"],
-      glasses: ["martini"]
-    };
+  describe("when the user doesnt have any filters on", () => {
+    it("does not return any filters", () => {
+      const filterOptions = {
+        ingredients: [],
+        categories: [],
+        glasses: []
+      };
+      expect(filtersFromUserOptions(filterOptions)).toEqual([]);
+    });
+  });
 
-    const bar = ["gin", "vodka"];
-    const nonVeganIngredients = ["egg"];
+  describe("when the user has all the filters on", () => {
+    it("builds an array of filters based on the users current options", () => {
+      const filterOptions = {
+        ingredients: ["whiskey"],
+        ingredientsRule: "mustInclude",
+        barOnly: true,
+        veganOnly: true,
+        categories: ["Longdrink"],
+        glasses: ["martini"]
+      };
 
-    expect(
-      filtersFromUserOptions(filterOptions, bar, nonVeganIngredients)
-    ).toEqual([
-      { ingredients: ["whiskey"], rule: "mustInclude" }, // ingredientsRule/ingredients
-      { ingredients: ["gin", "vodka"], rule: "makeableFrom" }, // bar only
-      { ingredients: ["egg"], rule: "mustNotInclude" }, // vegan
-      { categories: ["Longdrink"], rule: "inCategory" }, // categories
-      { glasses: ["martini"], rule: "inGlass" } // glasses
-    ]);
+      const bar = ["gin", "vodka"];
+      const nonVeganIngredients = ["egg"];
+
+      expect(
+        filtersFromUserOptions(filterOptions, bar, nonVeganIngredients)
+      ).toEqual([
+        { ingredients: ["whiskey"], rule: "mustInclude" }, // ingredientsRule/ingredients
+        { ingredients: ["gin", "vodka"], rule: "makeableFrom" }, // bar only
+        { ingredients: ["egg"], rule: "mustNotInclude" }, // vegan
+        { categories: ["Longdrink"], rule: "inCategory" }, // categories
+        { glasses: ["martini"], rule: "inGlass" } // glasses
+      ]);
+    });
   });
 });
