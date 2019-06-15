@@ -128,15 +128,22 @@ describe("filtersFromUserOptions", () => {
       ingredients: ["whiskey"],
       ingredientsRule: "mustInclude",
       barOnly: true,
-      categories: [],
-      glasses: []
+      veganOnly: true,
+      categories: ["Longdrink"],
+      glasses: ["martini"]
     };
 
     const bar = ["gin", "vodka"];
+    const nonVeganIngredients = ["egg"];
 
-    expect(filtersFromUserOptions(filterOptions, bar)).toEqual([
-      { ingredients: ["whiskey"], rule: "mustInclude" },
-      { ingredients: ["gin", "vodka"], rule: "makeableFrom" }
+    expect(
+      filtersFromUserOptions(filterOptions, bar, nonVeganIngredients)
+    ).toEqual([
+      { ingredients: ["whiskey"], rule: "mustInclude" }, // ingredientsRule/ingredients
+      { ingredients: ["gin", "vodka"], rule: "makeableFrom" }, // bar only
+      { ingredients: ["egg"], rule: "mustNotInclude" }, // vegan
+      { categories: ["Longdrink"], rule: "inCategory" }, // categories
+      { glasses: ["martini"], rule: "inGlass" } // glasses
     ]);
   });
 });
