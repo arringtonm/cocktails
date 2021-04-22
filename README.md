@@ -1,10 +1,13 @@
 # Cocktails Browser
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/4aecd7d0-e759-4866-8717-b4b09f8cbb16/deploy-status)](https://app.netlify.com/sites/elated-shockley-96a155/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/4aecd7d0-e759-4866-8717-b4b09f8cbb16/deploy-status)](https://app.netlify.com/sites/iba-cocktails/deploys)
 [![Build Status](https://travis-ci.org/mikeyhogarth/cocktails.svg?branch=master)](https://travis-ci.org/mikeyhogarth/cocktails)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/561bedec36224121a246675b673b872f)](https://www.codacy.com/app/mikeyhogarth/cocktails?utm_source=github.com&utm_medium=referral&utm_content=mikeyhogarth/cocktails&utm_campaign=Badge_Grade)
+[![GitHub license](https://img.shields.io/github/license/mikeyhogarth/cocktails.svg)](https://github.com/mikeyhogarth/cocktails/blob/master/LICENSE)
 
 ![Screenshot](/public/Screenshot.png?raw=true)
+
+Deployed at https://iba-cocktails.netlify.com/
 
 This provides a user interface for browsing and filtering the [IBA cocktails list](https://en.wikipedia.org/wiki/List_of_IBA_official_cocktails) (and a couple of other popular drinks). Features include;
 
@@ -27,7 +30,7 @@ Cocktail list and ingredient data was originally seeded from https://github.com/
 
 Enrichment and images provided by the amazing [CocktailDB](https://www.thecocktaildb.com/)
 
-Application is hosted over at netlify - _awesome_ service: https://elated-shockley-96a155.netlify.com
+Application is hosted over at [netlify](https://www.netlify.com/) - _awesome_ service
 
 ## Tech stuff / Local Usage
 
@@ -38,7 +41,7 @@ npm install
 npm start
 ```
 
-All the data is in two JSON files (see `src/data`), so there's no server or database to worry about.
+All the data is in JSON files (see `src/data`), so there's no server or database to worry about.
 
 ## Contributing
 
@@ -47,6 +50,7 @@ If you have a comment about one of the recipes / a data related issue, feel free
 Take the labels "Help Wanted" or "Good first issue" as an open invitation to pick tickets up if you want to, but if they don't have those labels then please get in touch to discuss any change before contributing.
 
 - Assign yourself to a ticket if you're working on it.
+- If there's not already an open ticket, but you have a suggestion, please raise as an issue and discuss prior to doing any work.
 - We're not doing versioning yet so don't worry about bumping versions/changelogs.
 - We've got [Snapshot Testing](https://jestjs.io/docs/en/snapshot-testing) going on in this app, remember to update them if you change the views.
 - Don't check in `package-lock` unless `package.json` has changed.

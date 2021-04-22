@@ -504,7 +504,7 @@
         "label": "Maraschino"
       },
       { "unit": "cl", "amount": 1.5, "ingredient": "Lemon juice" },
-      { "special": "(Optional) 1 shot crème de violette." }
+      { "amount": "1 shot", "ingredient": "Crème de violette" }
     ],
     "preparation": "Shake and strain into a chilled cocktail glass. The IBA recipe omits the commonly included crème de violette which gives the drink a distinctive purple color."
   },
@@ -600,7 +600,7 @@
   },
   {
     "iba": true,
-    "name": "B52",
+    "name": "B-52",
     "colors": ["#F39F00", "#E7D3B3", "#401110"],
     "glass": "shot",
     "category": "After Dinner Cocktail",
@@ -659,7 +659,7 @@
   },
   {
     "iba": true,
-    "name": "God Mother",
+    "name": "Godmother",
     "colors": "#C3660B",
     "glass": "old-fashioned",
     "ingredients": [
@@ -721,7 +721,7 @@
   },
   {
     "iba": true,
-    "name": "Lemon Drop Martini",
+    "name": "Lemon Drop",
     "colors": "#C4B686",
     "glass": "martini",
     "category": "All Day Cocktail",
@@ -1163,6 +1163,7 @@
   {
     "iba": true,
     "name": "Dark 'n' Stormy",
+    "searchTerm": "Dark and Stormy",
     "colors": ["#CF612A", "#860F00", "#D1C112"],
     "glass": "highball",
     "category": "Longdrink",
@@ -1176,6 +1177,7 @@
   {
     "iba": true,
     "name": "Ramos Fizz",
+    "searchTerm": "Royal Gin Fizz",
     "colors": "#D9CAA6",
     "glass": "highball",
     "category": "Longdrink",
@@ -1226,7 +1228,7 @@
   },
   {
     "iba": true,
-    "name": "God Father",
+    "name": "Godfather",
     "colors": "#B77F27",
     "glass": "old-fashioned",
     "ingredients": [

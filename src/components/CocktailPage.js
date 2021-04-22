@@ -1,17 +1,16 @@
 import React from "react";
 import useScrollTop from "../hooks/useScrollTop";
+import useEnrichCocktail from "../hooks/useEnrichCocktail";
 import { connect } from "react-redux";
 import { Fade, Box, Grid } from "@material-ui/core";
 import { currentCocktailSelector } from "../selectors";
-import { withStyles } from "@material-ui/core/styles";
-import { bindActionCreators } from "redux";
-import { enrichCocktail } from "../actions";
+import { makeStyles } from "@material-ui/core/styles";
 import CocktailDetail from "./CocktailPage/CocktailDetail";
 import CocktailVariantList from "./CocktailPage/CocktailVariantList";
 
 const fullHeight = "92vh";
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   cocktailDetail: {
     overflow: "auto",
     [theme.breakpoints.up("sm")]: {
@@ -34,24 +33,27 @@ const styles = theme => ({
     height: "20vh",
     backgroundPosition: "center"
   }
-});
+}));
 
-const CocktailPage = ({ cocktail, enrichCocktail, classes }) => {
+export const CocktailPage = ({ cocktail }) => {
+  const classes = useStyles();
   useScrollTop();
+  useEnrichCocktail(cocktail);
 
-  if (!cocktail) return <span>Cocktail Not Found</span>;
+  if (!cocktail) return <span>Cocktail not found</span>;
 
-  enrichCocktail(cocktail);
   const image = cocktail.enrichment && cocktail.enrichment.image;
 
   return (
     <>
-      <Box
-        component="div"
-        className={classes.mobileImage}
-        display={{ xs: "block", md: "none" }}
-        style={{ backgroundImage: `url(${image})` }}
-      />
+      <Fade in={!!image}>
+        <Box
+          component="div"
+          className={classes.mobileImage}
+          display={{ xs: "block", md: "none" }}
+          style={image && { backgroundImage: `url(${image})` }}
+        />
+      </Fade>
       <Grid container className={classes.root}>
         <Grid className={classes.cocktailDetail} item md={6} xs={12}>
           <div className={classes.cocktailDetailContent}>
@@ -62,9 +64,11 @@ const CocktailPage = ({ cocktail, enrichCocktail, classes }) => {
         <Grid item md={6} xs={false}>
           <Fade in={!!image}>
             <div
-              style={{
-                backgroundImage: `url(${image})`
-              }}
+              style={
+                image && {
+                  backgroundImage: `url(${image})`
+                }
+              }
               className={classes.cocktailImage}
             />
           </Fade>
@@ -78,11 +82,4 @@ const mapStateToProps = (state, ownProps) => ({
   cocktail: currentCocktailSelector(state, ownProps)
 });
 
-const mapDispatchToProps = dispatch => ({
-  enrichCocktail: bindActionCreators(enrichCocktail, dispatch)
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withStyles(styles)(CocktailPage));
+export default connect(mapStateToProps)(CocktailPage);

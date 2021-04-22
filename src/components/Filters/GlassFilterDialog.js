@@ -1,6 +1,8 @@
 import React from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import { map } from "lodash";
+import GlassIcon from "../GlassIcon";
 
 import {
   DialogContent,
@@ -21,23 +23,28 @@ const GlassFilter = ({ glasses, allGlasses, updateFilter }) => {
       <FormControl component="fieldset">
         <FormLabel component="legend">Glass</FormLabel>
         <FormGroup row>
-          {allGlasses.map(Glass => {
+          {map(allGlasses, (glassDetail, glassKey) => {
             return (
               <FormControlLabel
-                key={Glass}
+                key={glassKey}
                 control={
                   <Checkbox
-                    checked={glasses.includes(Glass)}
+                    checked={glasses.includes(glassKey)}
                     onChange={() =>
                       updateFilter({
-                        glasses: removeOrAddItemFromArray(Glass, glasses)
+                        glasses: removeOrAddItemFromArray(glassKey, glasses)
                       })
                     }
                     value="checkedB"
                     color="primary"
                   />
                 }
-                label={Glass}
+                label={
+                  <span>
+                    <GlassIcon glass={glassKey} />
+                    {glassDetail.name}
+                  </span>
+                }
               />
             );
           })}
